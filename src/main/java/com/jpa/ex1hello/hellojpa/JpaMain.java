@@ -19,12 +19,18 @@ public class JpaMain {
 
         try{
 
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                    .getResultList(); // member 필드의 전체를 가져옴
+            //비영속
+            Member member = new Member();
+            member.setId(100);
+            member.setName("HelloJPA");
 
-            for (Member member : result) {
-                System.out.println("member.name = " + member.getName());
-            }
+            //영속 - 이때는 DB에 저장되지않는다
+            System.out.println("--- before ---");
+            em.persist(member);
+            System.out.println("--- after ---");
+
+            Member findMember1 = em.find(Member.class, 101);
+            Member findMember2 = em.find(Member.class, 101);
 
             tx.commit();
         } catch (Exception e){
