@@ -32,6 +32,9 @@ public class JpaMain {
             Member findMember1 = em.find(Member.class, 101);
             Member findMember2 = em.find(Member.class, 101);
 
+            System.out.println("result = " + (findMember1 == findMember2));
+            // 영속 엔티티의 동일성 보장
+
             tx.commit();
         } catch (Exception e){
             tx.rollback();
