@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class JpaMain {
 
@@ -18,9 +17,13 @@ public class JpaMain {
 
         try{
 
-            Member member = new Member();
-            member.setUsername("C");
+            Team team = new Team(); // 팀 세팅
+            team.setName("TeamA"); // 팀 이름 지정
+            em.persist(team);
 
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setTeamId(team.getId()); // member1을 TeamA에 소속시키기
             em.persist(member);
 
             tx.commit();
