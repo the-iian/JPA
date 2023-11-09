@@ -19,22 +19,6 @@ public class JpaMain {
 
         try{
 
-            //비영속
-            Member member = new Member();
-            member.setId(100);
-            member.setName("HelloJPA");
-
-            //영속 - 이때는 DB에 저장되지않는다
-            System.out.println("--- before ---");
-            em.persist(member);
-            System.out.println("--- after ---");
-
-            Member findMember1 = em.find(Member.class, 101);
-            Member findMember2 = em.find(Member.class, 101);
-
-            System.out.println("result = " + (findMember1 == findMember2));
-            // 영속 엔티티의 동일성 보장
-
             tx.commit();
         } catch (Exception e){
             tx.rollback();
