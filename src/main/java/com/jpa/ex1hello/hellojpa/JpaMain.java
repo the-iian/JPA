@@ -38,6 +38,14 @@ public class JpaMain {
             Team findTeam = findMember.getTeam(); // 팀에서 바로 꺼내서 조회할 수 있다
             System.out.println("findTeam = " + findTeam.getName()); // 1차캐시에서 출력
 
+            //새로운 B팀 저장
+            Team teamB = new Team();
+            teamB.setName("TeamB");
+            em.persist(teamB);
+
+            //회원1에 새로운 팀 B로 설정
+            member.setTeam(teamB);
+
             tx.commit();
 
         } catch (Exception e){
