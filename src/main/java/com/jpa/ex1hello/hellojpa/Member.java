@@ -12,8 +12,12 @@ public class Member {
     @Column(name = "USERNAME") // DB 컬럼명은 다른거로 쓰고싶을 때
     private String username;
 
-    @Column(name = "TEAM_ID")
-    private Long teamId;
+//    @Column(name = "TEAM_ID")
+//    private Long teamId;
+
+    @ManyToOne // 멤버기준 팀은 다대일 관계
+    @JoinColumn(name = "TEAM_ID") // Foreign key
+    private Team team; // 연관 객체 사용
 
     public Long getId() {
         return id;
@@ -31,12 +35,12 @@ public class Member {
         this.username = username;
     }
 
-    public Long getTeamId() {
-        return teamId;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
 
