@@ -15,6 +15,12 @@ public class Team {
     @OneToMany(mappedBy = "team") // 일대다 맵핑에서 어떤거랑 연결되어있는지 주인 지정
     private List<Member> members = new ArrayList<>();
 
+    /* 연관관계 편의 메소드2 양쪽 하나만 사용하면 됨
+    public void addMember(Member member){
+        member.setTeam(this);
+        members.add(member);
+    } */
+
     public Long getId() {
         return id;
     }
